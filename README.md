@@ -30,6 +30,8 @@ I plan on training models for a variety of organisms in the future with the help
 
 ## Hardware
 
+Edit_Higor: This version of SPACEtomo has been implemented on a Thermo Scientic Krios G4 equipped with a Falcon 4i direct electron detector. In addition, we also use a SupportPC (with GPU and internet connection) where we mount the Microscope storage server to have access to the acquired maps. 
+
 SPACEtomo has only been tested on a Thermo Scientic Krios equipped with a Gatan K3 direct electron detector at this point although it should also work on other Thermo Scientific intstruments. A recent version of the open-source microscope control software [SerialEM](https://bio3d.colorado.edu/SerialEM/) should be installed and calibrated. It also requires the [PACEtomo](https://github.com/eisfabian/PACEtomo) scripts.
 
 ## Requirements
@@ -44,7 +46,11 @@ sem.OKBox("Python works!")
 ```
 If you get an error message, please consult the [SerialEM website](https://bio3d.colorado.edu/SerialEM/hlp/html/about_scripts.htm#Python) on how to setup Python for SerialEM.
 
+## Instalation of conda environments
+
 Additionally, you will require several Python modules. I highly recommend using the [miniconda](https://docs.conda.io/projects/miniconda/en/latest/) package manager (you will need network connection).
+
+For our setup, I dowloaded and installed [Anaconda](https://www.anaconda.com/download) on the SupportPC running Windows (because SerialEM runs also in Windows). Then I open the Anaconda launcher and using the Anaconda Powershell I've installed the dependencies as following:
 
 If everything goes well, you can install all dependencies by downloading the *SPACEenvironment.yaml* file and running the following line the Anaconda Prompt:
 
@@ -52,7 +58,7 @@ If everything goes well, you can install all dependencies by downloading the *SP
 
 This may take 10-20+ minutes to collect all the packages. If it fails or you are impatient you can install the packages manually step by step.
 
-WARNING: This assumes the presence of a GPU in the SerialEM computer. In principle, it should be possible to get SPACEtomo working without a GPU on the SerialEM computer, but I did not have a chance to test it and provide installation instructions for this case yet.
+After this you can continue with setting the Python path (in the SerialEM properties file) to this PyTorch environment you have just created.
 
 ### Manual setup
 <details>
@@ -100,7 +106,7 @@ To let SerialEM access this environment, we have to adjust the *SerialEM_propert
 
     PathToPython	3.9 	<your path>\envs\SerialEM_pytorch
 
-
+You can find the SerialEM properties file in the ProgramData\SerialEM\ folder, and the path to our SerialEM_pytorch file, using the command conda env list (in the Anaconda Powershell) and copying the respective path of the environment.
 
 ## Installation
 
